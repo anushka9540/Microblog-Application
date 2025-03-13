@@ -1,34 +1,24 @@
 <template>
   <div>
-      <label>Search Hashtags : </label>
-      <input 
-        v-model="search" 
-        @keyup.enter="handleSearch" 
-        placeholder="Search Hashtag..." 
-        class="search-input" 
-      />
+    <label>Search Hashtags:</label>
+    <input 
+      v-model="searchTerm" 
+      placeholder="Search Hashtag..." 
+      class="search-input" 
+    />
     <p v-if="showNoHashtagMessage" class="no-hashtag-message">
-      No hashtag found for "{{ search }}"
+      No hashtag found for "{{ searchTerm }}"
     </p>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { computed } from 'vue';
 import useMicroblog from '../composables/use-microblog';
 
-const { searchTerm, setSearchTerm, hashtagExists } = useMicroblog();
-const search = ref(searchTerm.value);
-const showNoHashtagMessage = ref(false);
+const { searchTerm, hashtagExists } = useMicroblog();
 
-const handleSearch = () => {
-  setSearchTerm(search.value);
-  showNoHashtagMessage.value = !hashtagExists.value;
-};
-
-watch(search, () => {
-  showNoHashtagMessage.value = false; 
-});
+const showNoHashtagMessage = computed(() => !hashtagExists.value);
 </script>
 
 <style scoped>

@@ -22,7 +22,9 @@ import useMicroblog from './composables/use-microblog';
 const { posts, searchTerm, setSearchTerm, setFilter, incrementLike } = useMicroblog();
 
 const filteredPosts = computed(() => {
-  if (!searchTerm.value) return posts.value;
+  if (searchTerm.value === '#' || searchTerm.value === '' || !searchTerm.value) {
+    return posts.value;
+  }
   return posts.value.filter(post => post.hashtags.includes(searchTerm.value.replace('#', '')));
 });
 </script>
@@ -43,5 +45,4 @@ const filteredPosts = computed(() => {
   align-items: start; 
   justify-content: space-evenly; 
 }
-
 </style>
