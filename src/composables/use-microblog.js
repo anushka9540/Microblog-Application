@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue';
 
 const posts = ref([
-    { id: 1, title: 'Learning Vue.js 3', content: 'Vue 3 with Composition API.', hashtags: ['vue', 'javascript'], likes: 18 },
-    { id: 2, title: 'Learning Vuex', content: 'State management for Vue.', hashtags: ['vue', 'vuex'], likes: 19 },
+    { id: 1, title: 'Learning Vue.js 3', content: 'Vue 3 with Composition API.It is Great.', hashtags: ['vue', 'javascript'], likes: 18 },
+    { id: 2, title: 'Learning Vuex', content: 'State management for Vue.It allows you to logically separate modules.', hashtags: ['vue', 'vuex'], likes: 19 },
     { id: 3, title: 'Vue Router', content: 'Create Single Page Applications.', hashtags: ['vue', 'vue-router'], likes: 16 },
     { id: 4, title: 'Testing Vue Apps', content: 'Writing tests using Vue Test Utils.', hashtags: ['vue', 'javascript', 'testing'], likes: 30 },
     { id: 5, title: 'Advanced Vue Testing', content: 'Deep dive into Vue Test Utils and Jest.', hashtags: ['vue', 'testing'], likes: 10 },
@@ -13,21 +13,14 @@ const searchTerm = ref('');
 const filterTag = ref('');
 
 const setSearchTerm = term => searchTerm.value = term;
-const setFilter = tag => filterTag.value = tag;
-
+const setFilter = tag => {
+  searchTerm.value = `#${tag}`; 
+};
 
 const hashtagExists = computed(() => {
-    if (!searchTerm.value) return true;
-  
-    const normalizedSearch = searchTerm.value.startsWith('#') 
-      ? searchTerm.value.slice(1) 
-      : searchTerm.value;
-  
-    return posts.value.some(post => 
-      post.hashtags.includes(normalizedSearch)
-    );
-  });
-  
+  if (!searchTerm.value) return true;
+  return posts.value.some(post => post.hashtags.includes(searchTerm.value.replace('#', '')));
+});
 
 const incrementLike = id => {
   const post = posts.value.find(post => post.id === id);
