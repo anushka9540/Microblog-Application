@@ -14,19 +14,11 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
 import SearchHashtag from './components/SearchHashtag.vue';
 import Card from './components/Card.vue';
 import useMicroblog from './composables/use-microblog';
 
-const { posts, searchTerm, setSearchTerm, setFilter, incrementLike } = useMicroblog();
-
-const filteredPosts = computed(() => {
-  if (searchTerm.value === '#' || searchTerm.value === '' || !searchTerm.value) {
-    return posts.value;
-  }
-  return posts.value.filter(post => post.hashtags.includes(searchTerm.value.replace('#', '')));
-});
+const { posts, searchTerm, setSearchTerm, setFilter, incrementLike, filteredPosts } = useMicroblog();
 </script>
 
 <style scoped>
@@ -42,7 +34,7 @@ const filteredPosts = computed(() => {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  align-items: start; 
-  justify-content: space-evenly; 
+  align-items: start;
+  justify-content: space-between;
 }
 </style>
