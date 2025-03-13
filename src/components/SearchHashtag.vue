@@ -9,8 +9,8 @@
         class="search-input" 
       />
     </div>
-    <p v-if="!hashtagExists" class="no-hashtag-message">
-      No hashtag found for "#{{ searchTerm }}"
+    <p v-if="!hashtagExists()" class="no-hashtag-message">
+      No hashtag found for "{{ searchTerm }}"
     </p>
   </div>
 </template>

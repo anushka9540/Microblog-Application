@@ -19,8 +19,6 @@ const filteredPosts = computed(() => {
   );
 });
 
-const hashtagExists = computed(() => filteredPosts.value.length > 0);
-
 const incrementLike = (id) => {
   const post = posts.value.find(post => post.id === id);
   if (post) post.likes++;
@@ -33,7 +31,7 @@ export default function useMicroblog() {
     filterTag,
     setFilter,
     incrementLike,
-    hashtagExists,
-    filteredPosts
+    filteredPosts,
+    hashtagExists: () => filteredPosts.value.length > 0
   };
 }
