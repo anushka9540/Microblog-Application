@@ -23,7 +23,7 @@ const { posts, searchTerm, setSearchTerm, setFilter, incrementLike, filteredPost
 
 <style scoped>
 .container {
-  max-width: 800px;
+  width: 900px;
   margin: auto;
   padding: 20px;
   text-align: center;
@@ -35,6 +35,16 @@ const { posts, searchTerm, setSearchTerm, setFilter, incrementLike, filteredPost
   gap: 20px;
   flex-wrap: wrap;
   align-items: start;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
-</style>
+
+@media (max-width: 600px) {
+  .container{
+    width: 100%;
+  }
+  .grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>  

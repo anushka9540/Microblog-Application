@@ -2,12 +2,12 @@
   <div class="card">
     <div class="card-content">
       <h3>{{ post.title }}</h3>
-      <hr />
+      <div class="line"></div>
       <p>{{ post.content }}</p>
-      <hr />
+      <div class="line"></div>
       <div class="like-container">
         <button @click="$emit('like', post.id)" class="like-btn">
-          ❤️ {{ post.likes }}
+          <i class="fa-solid fa-heart fa-sm" style="color: #f90606;"></i> {{ post.likes }}
         </button>
       </div>
       <p class="hashtags">
@@ -47,5 +47,11 @@ defineProps(['post']);
   margin-top: -5px;
   background: none;
   color: black;
+  border: none;
+  outline: none;
 }
-</style>
+
+.line{
+  border: 1px solid black;
+}
+</style> 

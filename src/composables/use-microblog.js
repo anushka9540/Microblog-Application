@@ -15,7 +15,7 @@ const filteredPosts = computed(() => {
   const term = searchTerm.value.toLowerCase();
 
   return posts.value.filter(post =>
-    post.hashtags.some(tag => tag.toLowerCase().startsWith(term))
+    post.hashtags.some(tag => tag.toLowerCase().includes(term)) 
   );
 });
 
